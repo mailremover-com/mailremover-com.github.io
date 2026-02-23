@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-provider="default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - MailRemover</title>
+    <!-- StreamHub Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace']
+                    },
+                    colors: {
+                        /* StreamHub Sovereign Theme */
+                        primary: { 400: '#39FF14', 500: '#32E012', 600: '#2BC710', 700: '#24AE0E' },
+                        dark: { 800: '#1A1A24', 850: '#12121A', 900: '#0A0A0F', 950: '#050508' },
+                        google: '#4285F4',
+                        yahoo: '#6001d2',
+                        microsoft: '#f25022'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* StreamHub Sovereign Theme Variables */
+        :root {
+            --void: #0A0A0F;
+            --panel: #12121A;
+            --surface: #1A1A24;
+            --border: #2A2A35;
+            --text-primary: #F0F0F5;
+            --text-secondary: #A0A0B0;
+            --neon-green: #39FF14;
+            --neon-glow: rgba(57, 255, 20, 0.15);
+            --neon-glow-strong: rgba(57, 255, 20, 0.3);
+            --provider-accent: #39FF14;
+            --provider-accent-light: #5FFF42;
+            --provider-accent-dark: #2BC710;
+        }
+        .provider-google { --provider-accent: #4285F4; --provider-accent-light: #5a9cff; --provider-accent-dark: #3367d6; }
+        .provider-yahoo { --provider-accent: #6001d2; --provider-accent-light: #7c3aed; --provider-accent-dark: #5b21b6; }
+        .provider-microsoft { --provider-accent: #f25022; --provider-accent-light: #ff6b47; --provider-accent-dark: #d63d14; }
+
+        /* Homemail Firework Background Animation */
+        @keyframes fireworkBurst {
+            0% { transform: scale(0); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+        }
+
+        .firework-bg {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .firework-particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+        }
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        /* Sovereign Entry Button Styles */
+        .sovereign-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            text-decoration: none;
+        }
+        .sovereign-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px currentColor;
+        }
+        .sovereign-btn:active {
+            transform: translateY(0);
+        }
+
+        .sovereign-btn-google {
+            background: #4285F4;
+            box-shadow: 0 4px 20px rgba(66, 133, 244, 0.3);
+        }
+        .sovereign-btn-google:hover {
+            background: #3367d6;
+            box-shadow: 0 10px 40px rgba(66, 133, 244, 0.5);
+        }
+
+        .sovereign-btn-yahoo {
+            background: #6001d2;
+            box-shadow: 0 4px 20px rgba(96, 1, 210, 0.3);
+        }
+        .sovereign-btn-yahoo:hover {
+            background: #5000b0;
+            box-shadow: 0 10px 40px rgba(96, 1, 210, 0.5);
+        }
+
+        .sovereign-btn-microsoft {
+            background: linear-gradient(135deg, #f25022 0%, #7fba00 25%, #00a4ef 50%, #ffb900 75%, #f25022 100%);
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease infinite;
+            box-shadow: 0 4px 20px rgba(242, 80, 34, 0.3);
+        }
+        .sovereign-btn-microsoft:hover {
+            box-shadow: 0 10px 40px rgba(242, 80, 34, 0.5);
+        }
+
+        /* Mobile-first responsive: Stack vertically by default */
+        .sovereign-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* Desktop: Horizontal layout */
+        @media (min-width: 768px) {
+            .sovereign-buttons {
+                flex-direction: row;
+            }
+            .sovereign-btn {
+                flex: 1;
+                padding: 1.25rem 1rem;
+            }
+        }
+
+        /* Card glass effect - StreamHub Style */
+        .glass-card {
+            background: rgba(18, 18, 26, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 font-sans" style="background: var(--void);">
+    <!-- Firework Background -->
+    <div class="firework-bg">
+        <!-- Gradient Orbs -->
+        <div class="gradient-orb w-96 h-96 bg-primary-600 -top-48 -left-48"></div>
+        <div class="gradient-orb w-80 h-80 bg-yahoo -bottom-40 -right-40"></div>
+        <div class="gradient-orb w-64 h-64 bg-microsoft top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+        <!-- Floating Particles -->
+        <div class="firework-particle w-2 h-2 bg-primary-400" style="left: 10%; animation-duration: 8s; animation-delay: 0s;"></div>
+        <div class="firework-particle w-3 h-3 bg-yahoo" style="left: 25%; animation-duration: 12s; animation-delay: 2s;"></div>
+        <div class="firework-particle w-2 h-2 bg-google" style="left: 40%; animation-duration: 10s; animation-delay: 1s;"></div>
+        <div class="firework-particle w-4 h-4 bg-microsoft" style="left: 55%; animation-duration: 14s; animation-delay: 3s;"></div>
+        <div class="firework-particle w-2 h-2 bg-primary-500" style="left: 70%; animation-duration: 9s; animation-delay: 0.5s;"></div>
+        <div class="firework-particle w-3 h-3 bg-yahoo" style="left: 85%; animation-duration: 11s; animation-delay: 2.5s;"></div>
+        <div class="firework-particle w-2 h-2 bg-google" style="left: 15%; animation-duration: 13s; animation-delay: 4s;"></div>
+        <div class="firework-particle w-3 h-3 bg-microsoft" style="left: 60%; animation-duration: 10s; animation-delay: 1.5s;"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 w-full max-w-2xl">
+        <!-- Logo & Title -->
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center shadow-lg shadow-primary-500/30">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-white mb-2">Welcome to MailRemover</h1>
+            <p class="text-gray-400">Choose your email provider to get started</p>
+        </div>
+
+        <!-- Sovereign Entry Card -->
+        <div class="glass-card rounded-2xl p-8 shadow-2xl">
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="mb-6 p-4 rounded-lg {% if category == 'error' %}bg-red-500/20 border border-red-500/30 text-red-300{% elif category == 'success' %}bg-green-500/20 border border-green-500/30 text-green-300{% else %}bg-blue-500/20 border border-blue-500/30 text-blue-300{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <h2 class="text-xl font-semibold text-white text-center mb-6">Sign in with your email provider</h2>
+
+            <!-- Sovereign Entry Buttons -->
+            <div class="sovereign-buttons mb-8">
+                <!-- Google -->
+                <a href="{{ url_for('auth_login', provider='google') }}" class="sovereign-btn sovereign-btn-google">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#fff"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#fff"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#fff"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#fff"/>
+                    </svg>
+                    <span>Google</span>
+                </a>
+
+                <!-- Microsoft (Working) -->
+                <a href="{{ url_for('auth_login', provider='microsoft') }}" class="sovereign-btn sovereign-btn-microsoft">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.4 11.4H2V2h9.4v9.4zM22 11.4h-9.4V2H22v9.4zM11.4 22H2v-9.4h9.4V22zM22 22h-9.4v-9.4H22V22z" fill="#fff"/>
+                    </svg>
+                    <span>Microsoft</span>
+                </a>
+
+                <!-- Yahoo - Coming Soon -->
+                <div class="sovereign-btn sovereign-btn-yahoo opacity-50 cursor-not-allowed" title="Coming Soon">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.913 13.773l-3.344-8.066H6.413l4.635 10.455v5.838h3.522v-5.838l4.635-10.455h-3.156l-3.136 8.066z" fill="#fff"/>
+                        <circle cx="18.5" cy="18.5" r="2.5" fill="#fff"/>
+                    </svg>
+                    <span>Yahoo</span>
+                    <span class="text-xs opacity-75">(Coming Soon)</span>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="flex items-center gap-4 mb-6">
+                <div class="flex-1 h-px bg-gray-700"></div>
+                <span class="text-gray-500 text-sm">Supported providers</span>
+                <div class="flex-1 h-px bg-gray-700"></div>
+            </div>
+
+            <!-- Provider Badges -->
+            <div class="flex flex-wrap justify-center gap-3 text-xs text-gray-500">
+                <span class="px-3 py-1 bg-gray-800/50 rounded-full">Gmail</span>
+                <span class="px-3 py-1 bg-gray-800/50 rounded-full">Outlook</span>
+                <span class="px-3 py-1 bg-gray-800/50 rounded-full">Yahoo Mail</span>
+                <span class="px-3 py-1 bg-gray-800/50 rounded-full">Hotmail</span>
+                <span class="px-3 py-1 bg-gray-800/50 rounded-full">Live.com</span>
+            </div>
+        </div>
+
+        <!-- Security Note -->
+        <div class="mt-6 text-center">
+            <div class="inline-flex items-center gap-2 text-gray-500 text-sm">
+                <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <span>Secured with OAuth 2.0 &bull; We never see your password</span>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-gray-600 text-xs">
+            <p>&copy; 2026 MailRemover. All rights reserved.</p>
+            <div class="mt-2 space-x-4">
+                <a href="/privacy" class="hover:text-gray-400">Privacy</a>
+                <a href="/tos" class="hover:text-gray-400">Terms</a>
+            </div>
+            <div class="mt-2">
+                <span id="app-version">v2.2.0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load version dynamically
+        (async function() {
+            try {
+                const r = await fetch('/version.json');
+                if (r.ok) {
+                    const d = await r.json();
+                    document.getElementById('app-version').textContent = 'v' + d.version;
+                }
+            } catch(e) {}
+        })();
+    </script>
+</body>
+</html>

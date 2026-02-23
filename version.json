@@ -1,0 +1,19 @@
+{
+    "version": "2.2.0",
+    "release_date": "2026-01-14",
+    "codename": "Sovereign Entry",
+    "notable_changes": [
+        "Sovereign Entry: Multi-provider OAuth2 login",
+        "Microsoft OAuth2 with /common endpoint (Outlook, Hotmail, Live)",
+        "Dynamic redirect_uri for dev/prod environments",
+        "Provider-aware theming with CSS variables",
+        "Fernet-encrypted token storage in database",
+        "Unified auth callback with provider-specific parsing",
+        "Personalized greetings with display names"
+    ],
+    "providers": {
+        "google": "OAuth2 + Gmail API",
+        "microsoft": "OAuth2 + Microsoft Graph",
+        "yahoo": "App Password + IMAP (OAuth2 restricted)"
+    }
+}

@@ -1,0 +1,63 @@
+import os, secrets, json
+from flask import Flask, redirect, url_for, session, request, render_template, jsonify, flash
+from google_auth_oauthlib.flow import Flow
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+
+app = Flask(__name__)
+app.secret_key = secrets.token_hex(32)
+
+# This allows OAuth to work over HTTP for testing, 
+# but since you have SSL, keep an eye on this.
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
+CLIENT_SECRETS_FILE = "credentials.json"
+SCOPES = ['https://www.googleapis.com/auth/gmail.modify']
+
+@app.route('/')
+def index(): 
+    return render_template('index.html')
+
+@app.route('/dashboard')
+def dashboard(): 
+    return render_template('dashboard.html')
+
+@app.route('/login')
+def login():
+    flow = Flow.from_client_secrets_file(
+        CLIENT_SECRETS_FILE,
+        scopes=SCOPES,
+        redirect_uri='https://mailremover.com/callback'
+    )
+    authorization_url, state = flow.authorization_url()
+    session['state'] = state
+    return redirect(authorization_url)
+
+@app.route('/login')
+def login():
+    flow = Flow.from_client_secrets_file(
+        CLIENT_SECRETS_FILE,
+        scopes=SCOPES,
+        redirect_uri='https://mailremover.com/callback'
+    )
+    authorization_url, state = flow.authorization_url()
+    session['state'] = state
+    return redirect(authorization_url)
+
+@app.route('/callback')
+def callback():
+    flow = Flow.from_client_secrets_file(
+        CLIENT_SECRETS_FILE,
+        scopes=SCOPES,
+        state=session['state'],
+        redirect_uri='https://mailremover.com/callback'
+    )
+    flow.fetch_token(authorization_response=request.url)
+    
+    # Store credentials in session or database here
+    # For now, let's just go to dashboard
+    return redirect(url_for('dashboard'))
+
+# ALWAYS KEEP THIS AT THE VERY BOTTOM
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8000)

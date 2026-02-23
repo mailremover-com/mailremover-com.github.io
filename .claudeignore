@@ -1,0 +1,33 @@
+# Ignore Python environment and cache
+venv/
+env/
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Git and metadata
+.git/
+.gitignore
+.claudeignore
+
+# Ignore large data/logs (The "4308" emails might be cached here)
+logs/
+*.log
+instance/
+storage/
+temp/
+*.json
+*.csv
+
+# Ignore assets he doesn't need to 'read' as text
+static/img/
+static/fonts/
+*.png
+*.jpg
+*.ico
+
+# Ignore local OS junk
+.DS_Store
+Thumbs.db

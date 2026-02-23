@@ -1,0 +1,22 @@
+# Flask Web Application Dependencies
+flask>=2.3.0
+gunicorn>=21.0.0
+
+# Google OAuth and API
+google-auth>=2.22.0
+google-auth-oauthlib>=1.0.0
+google-auth-httplib2>=0.1.0
+google-api-python-client>=2.97.0
+
+# Security
+python-dotenv>=1.0.0
+cryptography>=41.0.0
+
+# Multi-Provider OAuth (Google, Microsoft)
+authlib>=1.6.0
+
+# HTTP Requests (for OAuth token revocation)
+requests>=2.31.0
+
+# Payments
+stripe>=7.0.0

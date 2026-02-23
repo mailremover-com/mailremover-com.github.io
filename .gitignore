@@ -1,0 +1,49 @@
+# ============================================================================
+# MAILREMOVER - Git Ignore
+# ============================================================================
+
+# CRITICAL: NEVER commit secrets
+credentials.json
+credentials_desktop.json
+credentials.*.json
+token.json
+*.token
+.env
+*.db
+app.log
+logs/
+
+# Python
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+
+# Node (Tailwind build)
+node_modules/
+package-lock.json
+
+# Build artifacts
+input.css
+dist/
+*.tsbuildinfo
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backups
+*.bak
+*.tmp
+*.tgz
+*.tar.gz

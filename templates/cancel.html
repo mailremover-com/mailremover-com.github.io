@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Canceled - MailRemover</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        },
+                        dark: {
+                            800: '#1e1e2e',
+                            850: '#181825',
+                            900: '#11111b',
+                            950: '#0a0a0f'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark-950 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="border-b border-gray-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <a href="/" class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </div>
+                <span class="text-xl font-bold text-white">MailRemover</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-1 flex items-center justify-center px-4 py-16">
+        <div class="max-w-md mx-auto text-center">
+            <!-- Icon -->
+            <div class="mb-8">
+                <div class="w-20 h-20 mx-auto bg-gray-800 rounded-full flex items-center justify-center">
+                    <svg class="w-10 h-10 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Message -->
+            <h1 class="text-2xl font-bold text-white mb-4">Payment Canceled</h1>
+            <p class="text-gray-400 mb-8">
+                No worries! Your payment was canceled and you haven't been charged.
+                You can still use MailRemover's free features.
+            </p>
+
+            <!-- Options -->
+            <div class="space-y-4">
+                <a href="/pricing"
+                   class="block w-full py-3 px-6 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl transition-colors">
+                    View Plans Again
+                </a>
+                <a href="/dashboard"
+                   class="block w-full py-3 px-6 bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-xl transition-colors">
+                    Continue with Free
+                </a>
+            </div>
+
+            <!-- Free Tier Reminder -->
+            <div class="mt-10 p-4 bg-dark-900 rounded-xl border border-gray-800">
+                <p class="text-sm text-gray-400">
+                    <span class="text-white font-medium">Free tier includes:</span><br>
+                    Unlimited scans, email preview, and 100 deletes per month.
+                </p>
+            </div>
+
+            <!-- Help -->
+            <p class="mt-8 text-sm text-gray-500">
+                Having trouble? <a href="mailto:support@mailremover.com" class="text-primary-400 hover:text-primary-300">Contact support</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 py-6 px-4">
+        <div class="max-w-4xl mx-auto text-center text-gray-500 text-sm">
+            <div class="space-x-4">
+                <a href="/privacy" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                <span class="text-gray-700">|</span>
+                <a href="/tos" class="hover:text-gray-300 transition-colors">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

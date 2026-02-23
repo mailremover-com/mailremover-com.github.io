@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - MailRemover</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        },
+                        dark: {
+                            800: '#1e1e2e',
+                            850: '#181825',
+                            900: '#11111b',
+                            950: '#0a0a0f'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .float-animation { animation: float 3s ease-in-out infinite; }
+        .pricing-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .pricing-card:hover { transform: translateY(-4px); }
+        .popular-badge { animation: float 2s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-dark-950 min-h-screen">
+    <!-- Header -->
+    <header class="border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-white">MailRemover</span>
+                </a>
+                {% if user_email %}
+                <a href="/dashboard" class="text-sm text-primary-400 hover:text-primary-300 transition-colors">
+                    Back to Dashboard
+                </a>
+                {% else %}
+                <a href="/login" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded-lg transition-colors">
+                    Sign In
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Header Section -->
+        <div class="text-center mb-16">
+            <h1 class="text-4xl sm:text-5xl font-bold text-white mb-4">
+                Simple, Transparent Pricing
+            </h1>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                Start free. Pay only when you need to clean.
+            </p>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+            <!-- Free Tier -->
+            <div class="pricing-card bg-dark-900 rounded-2xl border border-gray-800 p-8 flex flex-col">
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-2">Free</h3>
+                    <p class="text-gray-400 text-sm">Perfect for trying out MailRemover</p>
+                </div>
+
+                <div class="mb-6">
+                    <span class="text-4xl font-bold text-white">$0</span>
+                    <span class="text-gray-500">/forever</span>
+                </div>
+
+                <ul class="space-y-4 mb-8 flex-1">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-gray-300">Unlimited inbox scans</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-gray-300">Preview any email</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-gray-300">Practice Mode (dry run)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-gray-300"><strong class="text-white">100</strong> deletes per month</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-gray-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                        <span class="text-gray-500">Auto-Clean Rules</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-gray-600 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                        <span class="text-gray-500">Auto-Unsubscribe</span>
+                    </li>
+                </ul>
+
+                <a href="/login" class="block w-full py-3 px-4 text-center bg-gray-800 hover:bg-gray-700 text-white font-medium rounded-xl transition-colors">
+                    Get Started Free
+                </a>
+            </div>
+
+            <!-- One-Time Purge (Popular) -->
+            <div class="pricing-card bg-dark-900 rounded-2xl border-2 border-primary-500 p-8 flex flex-col relative">
+                <!-- Popular Badge -->
+                <div class="popular-badge absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span class="bg-gradient-to-r from-primary-500 to-purple-500 text-white text-sm font-semibold px-4 py-1 rounded-full shadow-lg">
+                        Best Value
+                    </span>
+                </div>
+
+                <div class="mb-6 mt-2">
+                    <h3 class="text-lg font-semibold text-white mb-2">One-Time Purge</h3>
+                    <p class="text-gray-400 text-sm">Deep clean your inbox once</p>
+                </div>
+
+                <div class="mb-6">
+                    <span class="text-4xl font-bold text-white">$15</span>
+                    <span class="text-gray-500">/one-time</span>
+                    <div class="text-sm text-green-400 mt-1">
+                        No subscription required
+                    </div>
+                </div>
+
+                <ul class="space-y-4 mb-8 flex-1">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-gray-300">Everything in Free</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-primary-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-white font-medium">Unlimited deletes for 30 days</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-primary-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-white font-medium">All Smart Filters</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-primary-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-white font-medium">Email Preview</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-primary-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-white font-medium">Bulk operations</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-gray-300">Perfect for one-time cleanups</span>
+                    </li>
+                </ul>
+
+                <form action="/create-checkout-session" method="POST">
+                    <input type="hidden" name="price_type" value="purge">
+                    <button type="submit" class="block w-full py-3 px-4 text-center bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl transition-colors shadow-lg shadow-primary-500/25">
+                        Get One-Time Purge
+                    </button>
+                </form>
+            </div>
+
+            <!-- Maintenance Subscription -->
+            <div class="pricing-card bg-dark-900 rounded-2xl border border-gray-800 p-8 flex flex-col relative overflow-hidden">
+                <!-- Recurring Badge -->
+                <div class="absolute top-4 right-4">
+                    <span class="bg-green-500/10 text-green-400 text-xs font-semibold px-3 py-1 rounded-full border border-green-500/30">
+                        Auto-Clean
+                    </span>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-white mb-2">Maintenance</h3>
+                    <p class="text-gray-400 text-sm">Keep your inbox clean automatically</p>
+                </div>
+
+                <div class="mb-6">
+                    <span class="text-4xl font-bold text-white">$5</span>
+                    <span class="text-gray-500">/month</span>
+                    <div class="text-sm text-green-400 mt-1">Cancel anytime</div>
+                </div>
+
+                <ul class="space-y-4 mb-8 flex-1">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-gray-300">Everything in One-Time Purge</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-white font-medium">Unlimited deletes always</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-white font-medium">Auto-Clean Rules</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-white font-medium">Auto-Unsubscribe</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-white font-medium">Weekly Inbox Report</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                        </svg>
+                        <span class="text-gray-300">Priority support</span>
+                    </li>
+                </ul>
+
+                <form action="/create-checkout-session" method="POST">
+                    <input type="hidden" name="price_type" value="maintenance">
+                    <button type="submit" class="block w-full py-3 px-4 text-center bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-medium rounded-xl transition-colors">
+                        Start Maintenance
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Feature Comparison -->
+        <div class="mt-20 max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-white text-center mb-10">Feature Comparison</h2>
+
+            <div class="bg-dark-900 rounded-2xl border border-gray-800 overflow-hidden">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-gray-800">
+                            <th class="text-left p-4 text-gray-400 font-medium">Feature</th>
+                            <th class="p-4 text-gray-400 font-medium text-center">Free</th>
+                            <th class="p-4 text-primary-400 font-medium text-center">Purge ($15)</th>
+                            <th class="p-4 text-green-400 font-medium text-center">Maintenance ($5/mo)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-800/50">
+                        <tr>
+                            <td class="p-4 text-gray-300">Inbox Scans</td>
+                            <td class="p-4 text-center text-white">Unlimited</td>
+                            <td class="p-4 text-center text-white">Unlimited</td>
+                            <td class="p-4 text-center text-white">Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-gray-300">Email Preview</td>
+                            <td class="p-4 text-center text-white">Unlimited</td>
+                            <td class="p-4 text-center text-white">Unlimited</td>
+                            <td class="p-4 text-center text-white">Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-gray-300">Practice Mode</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-gray-300">Email Deletes</td>
+                            <td class="p-4 text-center text-gray-400">100/month</td>
+                            <td class="p-4 text-center text-white font-medium">Unlimited (30 days)</td>
+                            <td class="p-4 text-center text-white font-medium">Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-gray-300">Auto-Clean Rules</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-gray-300">Auto-Unsubscribe</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-gray-300">Weekly Inbox Report</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 text-gray-300">Priority Support</td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-gray-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                            <td class="p-4 text-center"><svg class="w-5 h-5 text-green-400 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="mt-20 max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold text-white text-center mb-10">Frequently Asked Questions</h2>
+
+            <div class="space-y-4">
+                <div class="bg-dark-900 rounded-xl border border-gray-800 p-6">
+                    <h3 class="text-white font-semibold mb-2">What's the difference between Purge and Maintenance?</h3>
+                    <p class="text-gray-400"><strong>One-Time Purge ($15)</strong> gives you 30 days of unlimited deletes - perfect for a deep clean. <strong>Maintenance ($5/mo)</strong> keeps your inbox clean forever with auto-rules and weekly reports.</p>
+                </div>
+                <div class="bg-dark-900 rounded-xl border border-gray-800 p-6">
+                    <h3 class="text-white font-semibold mb-2">Can I cancel Maintenance anytime?</h3>
+                    <p class="text-gray-400">Yes! Cancel with one click. You'll keep access until the end of your billing period. No contracts, no hassle.</p>
+                </div>
+                <div class="bg-dark-900 rounded-xl border border-gray-800 p-6">
+                    <h3 class="text-white font-semibold mb-2">What happens after my 30-day Purge expires?</h3>
+                    <p class="text-gray-400">You'll return to the free tier with 100 deletes/month. You can always buy another Purge or upgrade to Maintenance when you need more cleaning power.</p>
+                </div>
+                <div class="bg-dark-900 rounded-xl border border-gray-800 p-6">
+                    <h3 class="text-white font-semibold mb-2">Is my data safe?</h3>
+                    <p class="text-gray-400">Absolutely. We use Google's official OAuth and never store your emails. All processing happens in real-time. Read our <a href="/privacy" class="text-primary-400 hover:text-primary-300">Privacy Policy</a> for details.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Money Back Guarantee -->
+        <div class="mt-16 text-center">
+            <div class="inline-flex items-center px-6 py-3 bg-green-500/10 border border-green-500/30 rounded-xl">
+                <svg class="w-6 h-6 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+                <span class="text-green-400 font-medium">30-Day Money-Back Guarantee</span>
+            </div>
+            <p class="mt-4 text-gray-500 text-sm">Not happy? Get a full refund within 30 days. No questions asked.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 py-8 px-4 mt-16">
+        <div class="max-w-6xl mx-auto text-center text-gray-500 text-sm">
+            <p>&copy; 2026 MailRemover. All rights reserved.</p>
+            <div class="mt-3 space-x-4">
+                <a href="/privacy" class="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                <span class="text-gray-700">|</span>
+                <a href="/tos" class="hover:text-gray-300 transition-colors">Terms of Service</a>
+            </div>
+            <div class="mt-3">
+                <span id="app-version" class="text-[10px] text-gray-600">v2.1.0</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Load version from version.json
+        (async function loadVersion() {
+            try {
+                const response = await fetch('/version.json');
+                if (response.ok) {
+                    const data = await response.json();
+                    const versionEl = document.getElementById('app-version');
+                    if (versionEl && data.version) {
+                        versionEl.textContent = `v${data.version}`;
+                    }
+                }
+            } catch (e) { }
+        })();
+    </script>
+</body>
+</html>
