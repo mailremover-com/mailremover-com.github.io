@@ -130,6 +130,21 @@ def init_db():
             )
         ''')
 
+
+        # Vault R2 credentials (BYOS)
+        vault_columns = [
+            ('r2_account_id_enc', 'TEXT'),
+            ('r2_access_key_enc', 'TEXT'),
+            ('r2_secret_key_enc', 'TEXT'),
+            ('r2_bucket_name_enc', 'TEXT'),
+            ('r2_vault_enabled', 'INTEGER DEFAULT 0'),
+        ]
+        for col_name, col_type in vault_columns:
+            try:
+                cursor.execute(f'ALTER TABLE users ADD COLUMN {col_name} {col_type}')
+            except Exception:
+                pass
+
         print(f"Database initialized at {DB_PATH}")
 
 

@@ -59,6 +59,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 # Local imports
 import database as db
 from crypto_utils import encrypt_credential, decrypt_credential
+import vault_r2
 
 # =============================================================================
 # Configuration
@@ -2604,6 +2605,40 @@ def trash():
         if remaining is not None:
             response_data['remaining_deletes'] = remaining
 
+        # AUTO-BACKUP to user's R2 vault (runs in background, never blocks response)
+        vault_creds = get_vault_creds(user_email) if user_email else None
+        if vault_creds and trashed > 0:
+            def run_vault_backup(creds, ids, gmail_service, email):
+                import base64
+                for mid in ids:
+                    try:
+                        msg = gmail_service.users().messages().get(
+                            userId='me', id=mid, format='raw'
+                        ).execute()
+                        raw_bytes = base64.urlsafe_b64decode(msg['raw'] + '==')
+                        meta = gmail_service.users().messages().get(
+                            userId='me', id=mid, format='metadata',
+                            metadataHeaders=['Subject', 'From']
+                        ).execute()
+                        hdrs = {h['name']: h['value'] for h in meta.get('payload', {}).get('headers', [])}
+                        vault_r2.backup_email(
+                            creds['account_id'], creds['access_key'], creds['secret_key'],
+                            creds['bucket'], email, mid,
+                            hdrs.get('Subject', 'no-subject'),
+                            hdrs.get('From', ''),
+                            raw_bytes
+                        )
+                    except Exception:
+                        continue
+
+            backup_thread = threading.Thread(
+                target=run_vault_backup,
+                args=(vault_creds, message_ids, service, user_email),
+                daemon=True
+            )
+            backup_thread.start()
+            response_data['vault_backup'] = 'started'
+
         return jsonify(response_data)
 
     except HttpError as e:
@@ -2739,6 +2774,152 @@ def archive():
 # =============================================================================
 # Routes - CASA Compliance (Data Deletion)
 # =============================================================================
+
+
+
+# =============================================================================
+# PERSONAL VAULT — BYOS Cloudflare R2
+# =============================================================================
+
+def get_vault_creds(user_email):
+    """Get decrypted R2 credentials for a user. Returns dict or None."""
+    conn = db.get_connection()
+    try:
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT r2_account_id_enc, r2_access_key_enc, r2_secret_key_enc, r2_bucket_name_enc, r2_vault_enabled FROM users WHERE email=?",
+            (user_email,)
+        )
+        row = cursor.fetchone()
+        if not row or not row[4]:
+            return None
+        account_id = decrypt_credential(row[0])
+        access_key = decrypt_credential(row[1])
+        secret_key = decrypt_credential(row[2])
+        bucket    = decrypt_credential(row[3])
+        if not all([account_id, access_key, secret_key, bucket]):
+            return None
+        return {'account_id': account_id, 'access_key': access_key,
+                'secret_key': secret_key, 'bucket': bucket}
+    finally:
+        conn.close()
+
+
+@app.route('/api/vault/connect', methods=['POST'])
+@login_required
+def vault_connect():
+    data = request.get_json()
+    account_id = (data.get('account_id') or '').strip()
+    access_key = (data.get('access_key') or '').strip()
+    secret_key = (data.get('secret_key') or '').strip()
+    bucket     = (data.get('bucket') or '').strip()
+
+    if not all([account_id, access_key, secret_key, bucket]):
+        return jsonify({'ok': False, 'error': 'All fields required'}), 400
+
+    # Test connection before saving
+    ok, msg = vault_r2.test_connection(account_id, access_key, secret_key, bucket)
+    if not ok:
+        return jsonify({'ok': False, 'error': msg}), 400
+
+    user_email = session['user_email']
+    conn = db.get_connection()
+    try:
+        conn.execute(
+            """UPDATE users SET
+                r2_account_id_enc=?, r2_access_key_enc=?, r2_secret_key_enc=?,
+                r2_bucket_name_enc=?, r2_vault_enabled=1
+               WHERE email=?""",
+            (encrypt_credential(account_id), encrypt_credential(access_key),
+             encrypt_credential(secret_key), encrypt_credential(bucket), user_email)
+        )
+        conn.commit()
+    finally:
+        conn.close()
+
+    return jsonify({'ok': True, 'message': 'Vault connected successfully'})
+
+
+@app.route('/api/vault/status', methods=['GET'])
+@login_required
+def vault_status():
+    user_email = session['user_email']
+    creds = get_vault_creds(user_email)
+    if not creds:
+        return jsonify({'ok': True, 'connected': False})
+    ok, msg = vault_r2.test_connection(
+        creds['account_id'], creds['access_key'], creds['secret_key'], creds['bucket']
+    )
+    return jsonify({'ok': True, 'connected': ok, 'message': msg,
+                    'bucket': creds['bucket']})
+
+
+@app.route('/api/vault/disconnect', methods=['POST'])
+@login_required
+def vault_disconnect():
+    user_email = session['user_email']
+    conn = db.get_connection()
+    try:
+        conn.execute(
+            """UPDATE users SET r2_account_id_enc=NULL, r2_access_key_enc=NULL,
+               r2_secret_key_enc=NULL, r2_bucket_name_enc=NULL, r2_vault_enabled=0
+               WHERE email=?""", (user_email,)
+        )
+        conn.commit()
+    finally:
+        conn.close()
+    return jsonify({'ok': True})
+
+
+@app.route('/api/vault/browse', methods=['GET'])
+@login_required
+def vault_browse():
+    user_email = session['user_email']
+    creds = get_vault_creds(user_email)
+    if not creds:
+        return jsonify({'ok': False, 'error': 'Vault not connected'}), 400
+
+    search = request.args.get('search', '').strip()
+    token  = request.args.get('token')
+
+    result = vault_r2.list_vault(
+        creds['account_id'], creds['access_key'], creds['secret_key'],
+        creds['bucket'], user_email, search=search or None,
+        continuation_token=token or None
+    )
+    return jsonify(result)
+
+
+@app.route('/api/vault/download', methods=['POST'])
+@login_required
+def vault_download():
+    import io
+    user_email = session['user_email']
+    creds = get_vault_creds(user_email)
+    if not creds:
+        return jsonify({'error': 'Vault not connected'}), 400
+
+    data = request.get_json()
+    key  = data.get('key', '')
+
+    # Security: key must start with user's email prefix
+    if not key.startswith(user_email + '/'):
+        return jsonify({'error': 'Access denied'}), 403
+
+    ok, result = vault_r2.download_email(
+        creds['account_id'], creds['access_key'], creds['secret_key'],
+        creds['bucket'], key
+    )
+    if not ok:
+        return jsonify({'error': result}), 500
+
+    filename = key.split('/')[-1]
+    return send_file(
+        io.BytesIO(result),
+        mimetype='message/rfc822',
+        as_attachment=True,
+        download_name=filename
+    )
 
 @app.route('/api/delete-my-data', methods=['POST'])
 @login_required
