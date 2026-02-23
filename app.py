@@ -2783,26 +2783,17 @@ def archive():
 
 def get_vault_creds(user_email):
     """Get decrypted R2 credentials for a user. Returns dict or None."""
-    conn = db.get_connection()
-    try:
-        cursor = conn.cursor()
-        cursor.execute(
-            "SELECT r2_account_id_enc, r2_access_key_enc, r2_secret_key_enc, r2_bucket_name_enc, r2_vault_enabled FROM users WHERE email=?",
-            (user_email,)
-        )
-        row = cursor.fetchone()
-        if not row or not row[4]:
-            return None
-        account_id = decrypt_credential(row[0])
-        access_key = decrypt_credential(row[1])
-        secret_key = decrypt_credential(row[2])
-        bucket    = decrypt_credential(row[3])
-        if not all([account_id, access_key, secret_key, bucket]):
-            return None
-        return {'account_id': account_id, 'access_key': access_key,
-                'secret_key': secret_key, 'bucket': bucket}
-    finally:
-        conn.close()
+    row = db.get_vault_credentials(user_email)
+    if not row:
+        return None
+    account_id = decrypt_credential(row['account_id_enc'])
+    access_key = decrypt_credential(row['access_key_enc'])
+    secret_key = decrypt_credential(row['secret_key_enc'])
+    bucket     = decrypt_credential(row['bucket_enc'])
+    if not all([account_id, access_key, secret_key, bucket]):
+        return None
+    return {'account_id': account_id, 'access_key': access_key,
+            'secret_key': secret_key, 'bucket': bucket}
 
 
 @app.route('/api/vault/connect', methods=['POST'])
@@ -2823,19 +2814,13 @@ def vault_connect():
         return jsonify({'ok': False, 'error': msg}), 400
 
     user_email = session['user_email']
-    conn = db.get_connection()
-    try:
-        conn.execute(
-            """UPDATE users SET
-                r2_account_id_enc=?, r2_access_key_enc=?, r2_secret_key_enc=?,
-                r2_bucket_name_enc=?, r2_vault_enabled=1
-               WHERE email=?""",
-            (encrypt_credential(account_id), encrypt_credential(access_key),
-             encrypt_credential(secret_key), encrypt_credential(bucket), user_email)
-        )
-        conn.commit()
-    finally:
-        conn.close()
+    db.save_vault_credentials(
+        user_email,
+        encrypt_credential(account_id),
+        encrypt_credential(access_key),
+        encrypt_credential(secret_key),
+        encrypt_credential(bucket)
+    )
 
     return jsonify({'ok': True, 'message': 'Vault connected successfully'})
 
@@ -2858,16 +2843,7 @@ def vault_status():
 @login_required
 def vault_disconnect():
     user_email = session['user_email']
-    conn = db.get_connection()
-    try:
-        conn.execute(
-            """UPDATE users SET r2_account_id_enc=NULL, r2_access_key_enc=NULL,
-               r2_secret_key_enc=NULL, r2_bucket_name_enc=NULL, r2_vault_enabled=0
-               WHERE email=?""", (user_email,)
-        )
-        conn.commit()
-    finally:
-        conn.close()
+    db.clear_vault_credentials(user_email)
     return jsonify({'ok': True})
 
 

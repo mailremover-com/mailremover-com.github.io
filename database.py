@@ -509,6 +509,72 @@ def delete_user_data(email: str) -> dict:
         }
 
 
+
+
+def get_vault_credentials(email: str) -> dict | None:
+    """Get R2 vault credentials for a user. Returns dict or None."""
+    import sqlite3
+    conn = sqlite3.connect(get_db_path())
+    try:
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT r2_account_id_enc, r2_access_key_enc, r2_secret_key_enc, r2_bucket_name_enc, r2_vault_enabled FROM users WHERE email=?",
+            (email,)
+        )
+        row = cursor.fetchone()
+        if not row or not row[4]:
+            return None
+        return {
+            'account_id_enc': row[0],
+            'access_key_enc': row[1],
+            'secret_key_enc': row[2],
+            'bucket_enc':     row[3],
+            'enabled':        bool(row[4])
+        }
+    finally:
+        conn.close()
+
+
+def save_vault_credentials(email: str, account_id_enc: str, access_key_enc: str,
+                           secret_key_enc: str, bucket_enc: str) -> bool:
+    """Save encrypted R2 credentials for a user."""
+    import sqlite3
+    conn = sqlite3.connect(get_db_path())
+    try:
+        conn.execute(
+            """UPDATE users SET r2_account_id_enc=?, r2_access_key_enc=?,
+               r2_secret_key_enc=?, r2_bucket_name_enc=?, r2_vault_enabled=1
+               WHERE email=?""",
+            (account_id_enc, access_key_enc, secret_key_enc, bucket_enc, email)
+        )
+        conn.commit()
+        return True
+    except Exception as e:
+        print(f"save_vault_credentials error: {e}")
+        return False
+    finally:
+        conn.close()
+
+
+def clear_vault_credentials(email: str) -> bool:
+    """Remove R2 vault credentials for a user."""
+    import sqlite3
+    conn = sqlite3.connect(get_db_path())
+    try:
+        conn.execute(
+            """UPDATE users SET r2_account_id_enc=NULL, r2_access_key_enc=NULL,
+               r2_secret_key_enc=NULL, r2_bucket_name_enc=NULL, r2_vault_enabled=0
+               WHERE email=?""",
+            (email,)
+        )
+        conn.commit()
+        return True
+    except Exception as e:
+        print(f"clear_vault_credentials error: {e}")
+        return False
+    finally:
+        conn.close()
+
 def add_suggestion(email: str, suggestion_text: str) -> dict:
     """Add a user suggestion to the database."""
     with get_db() as conn:
