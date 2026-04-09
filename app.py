@@ -665,7 +665,8 @@ def set_security_headers(response):
         "frame-src https://www.youtube.com; "
         "object-src 'none'; "
         "base-uri 'self'; "
-        "form-action 'self';"
+        "form-action 'self'; "
+        "frame-ancestors 'self';"
     )
     return response
 
