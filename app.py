@@ -660,7 +660,7 @@ def set_security_headers(response):
         "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; "
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
         "font-src 'self' https://fonts.gstatic.com; "
-        "img-src 'self' data:; "
+        "img-src 'self'; "
         "connect-src 'self'; "
         "frame-src https://www.youtube.com; "
         "object-src 'none'; "
