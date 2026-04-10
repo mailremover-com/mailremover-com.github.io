@@ -389,7 +389,7 @@
     </main>
 
     <!-- Features Section -->
-    <section id="features" class="border-t border-gray-800 py-10 px-4">
+    <section id="features" class="border-t border-gray-800 py-6 px-4">
         <div class="max-w-5xl mx-auto">
             <h2 class="text-2xl font-bold text-white text-center mb-6">Why MailRemover?</h2>
             <div class="grid sm:grid-cols-3 gap-8">
@@ -425,7 +425,7 @@
     </section>
 
     <!-- How It Works -->
-    <section id="how-it-works" class="border-t border-gray-800 py-10 px-4">
+    <section id="how-it-works" class="border-t border-gray-800 py-6 px-4">
         <div class="max-w-3xl mx-auto">
             <h2 class="text-2xl font-bold text-white text-center mb-6">How It Works</h2>
             <div class="space-y-6">
@@ -455,7 +455,7 @@
     </section>
 
     <!-- Homemail Teaser Section -->
-    <section class="border-t border-gray-800 py-16 px-4 overflow-hidden">
+    <section class="border-t border-gray-800 py-6 px-4 overflow-hidden">
         <div class="max-w-3xl mx-auto">
             <div class="homemail-card relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 sm:p-10 border border-primary-500/30 overflow-hidden">
                 <!-- Firework/Sparkle Effects -->
@@ -523,7 +523,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 py-8 px-4">
+    <footer class="border-t border-gray-800 py-5 px-4">
         <div class="max-w-7xl mx-auto text-center text-gray-500 text-sm">
             <p>&copy; 2026 MailRemover. All rights reserved.</p>
             <div class="mt-3 space-x-4">
@@ -592,12 +592,7 @@
                         versionEl.textContent = `v${data.version}`;
                     }
 
-                    // Check if user has seen this version's What's New
-                    const seenVersion = localStorage.getItem('mailremover_seen_version');
-                    if (seenVersion !== data.version && data.version) {
-                        // Show What's New modal
-                        setTimeout(() => showWhatsNewModal(data), 500);
-                    }
+                    // What's New modal disabled on landing page
                 }
             } catch (e) { }
         })();
