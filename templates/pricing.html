@@ -4,30 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing - MailRemover</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        },
-                        dark: {
-                            800: '#1e1e2e',
-                            850: '#181825',
-                            900: '#11111b',
-                            950: '#0a0a0f'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
     <style>
         @keyframes float {
             0%, 100% { transform: translateY(0px); }

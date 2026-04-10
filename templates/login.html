@@ -8,28 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace']
-                    },
-                    colors: {
-                        /* StreamHub Sovereign Theme */
-                        primary: { 400: '#39FF14', 500: '#32E012', 600: '#2BC710', 700: '#24AE0E' },
-                        dark: { 800: '#1A1A24', 850: '#12121A', 900: '#0A0A0F', 950: '#050508' },
-                        google: '#4285F4',
-                        yahoo: '#6001d2',
-                        microsoft: '#f25022'
-                    }
-                }
-            }
-        }
-    </script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
     <style>
         /* StreamHub Sovereign Theme Variables */
         :root {
