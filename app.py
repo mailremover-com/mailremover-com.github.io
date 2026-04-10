@@ -654,20 +654,8 @@ def set_security_headers(response):
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
     # Permissions policy (disable unnecessary features)
     response.headers['Permissions-Policy'] = 'geolocation=(), microphone=(), camera=()'
-    # Content Security Policy — CASA Tier 2 compliance
-    response.headers['Content-Security-Policy'] = (
-        "default-src 'self'; "
-        "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; "
-        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
-        "font-src 'self' https://fonts.gstatic.com; "
-        "img-src 'self'; "
-        "connect-src 'self'; "
-        "frame-src https://www.youtube.com; "
-        "object-src 'none'; "
-        "base-uri 'self'; "
-        "form-action 'self'; "
-        "frame-ancestors 'self';"
-    )
+    # Content Security Policy — temporarily disabled for CSS debug
+    # response.headers['Content-Security-Policy'] = ()
     return response
 
 
