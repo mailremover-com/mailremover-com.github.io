@@ -228,83 +228,88 @@
         }
     </style>
 </head>
-<body class="font-sans" style="background: var(--void);">
+<body class="min-h-screen flex flex-col font-sans" style="background: var(--void);">
     <!-- Header - StreamHub Style -->
     <header style="border-bottom: 1px solid var(--border);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div style="display:flex; align-items:center; justify-content:space-between;">
-                <div style="display:flex; align-items:center; gap:10px;">
-                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; background: var(--neon-glow-strong); border: 1px solid var(--neon-green); border-radius:10px; flex-shrink:0;">
-                        <svg class="w-6 h-6" width="24" height="24" style="width:24px; height:24px; flex-shrink:0; color: var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--neon-glow-strong);border:1px solid var(--neon-green);">
+                        <svg class="w-6 h-6" width="24" height="24" style="width:24px;height:24px;flex-shrink:0;color:var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                         </svg>
                     </div>
-                    <span class="text-xl font-bold" style="font-size:18px; font-weight:700; color: var(--text-primary);">MailRemover</span>
+                    <div>
+                        <span class="text-xl font-bold" style="color: var(--text-primary);">MailRemover</span>
+                    </div>
                 </div>
-                <nav style="display:flex; align-items:center; gap:24px;">
-                    <a href="#features" style="color: var(--text-secondary); text-decoration:none; font-size:14px; white-space:nowrap;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">Features</a>
-                    <a href="#how-it-works" style="color: var(--text-secondary); text-decoration:none; font-size:14px; white-space:nowrap;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">How It Works</a>
-                    <a href="/pricing" style="color: var(--text-secondary); text-decoration:none; font-size:14px; white-space:nowrap;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">Pricing</a>
+                <nav class="hidden sm:flex items-center space-x-6" style="display:flex;align-items:center;gap:16px;">
+                    <a href="#features" style="color: var(--text-secondary);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'" class="transition-colors">Features</a>
+                    <a href="#how-it-works" style="color: var(--text-secondary);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'" class="transition-colors">How It Works</a>
+                    <a href="/pricing" style="color: var(--text-secondary);" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'" class="transition-colors">Pricing</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <main class="px-4 py-8">
+    <main class="flex-1 flex items-center justify-center px-4 py-16">
         <div class="max-w-4xl mx-auto text-center">
             <!-- Floating Icon - StreamHub Style -->
-            <div class="float-animation mb-4">
-                <div class="pulse-neon" style="width:64px; height:64px; margin:0 auto; border-radius:20px; display:flex; align-items:center; justify-content:center; background: var(--neon-glow); border: 1px solid var(--neon-green);">
-                    <svg width="32" height="32" style="width:32px; height:32px; flex-shrink:0; color: var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="float-animation mb-8">
+                <div class="w-24 h-24 mx-auto rounded-3xl flex items-center justify-center pulse-neon" style="width:64px;height:64px;margin:0 auto;border-radius:20px;display:flex;align-items:center;justify-content:center;background:var(--neon-glow);border:1px solid var(--neon-green);">
+                    <svg class="w-12 h-12" width="32" height="32" style="width:32px;height:32px;flex-shrink:0;color:var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                     </svg>
                 </div>
             </div>
 
             <!-- Headline - StreamHub Style -->
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style="font-size:36px; font-weight:700; margin-bottom:16px; color: var(--text-primary);">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6" style="color: var(--text-primary);">
                 Clean Your Email
-                <span style="background: linear-gradient(135deg, var(--neon-green) 0%, #5FFF42 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                <span class="text-transparent bg-clip-text" style="background: linear-gradient(135deg, var(--neon-green) 0%, #5FFF42 100%); -webkit-background-clip: text;">
                     In Minutes
                 </span>
             </h1>
 
-            <p style="font-size:16px; color: var(--text-secondary); margin-bottom:20px; max-width:600px; margin-left:auto; margin-right:auto;">
+            <p class="text-lg sm:text-xl mb-8 max-w-2xl mx-auto" style="color: var(--text-secondary);">
                 Remove thousands of unwanted emails across Gmail, Outlook, Yahoo, and more.
                 Take control of your digital life and reclaim your inbox.
             </p>
 
             <!-- Provider Strip -->
-            <div style="display:flex; align-items:center; justify-content:center; gap:24px; margin-bottom:24px;">
-                <p style="font-size:13px; color:#6b7280;">Works with:</p>
-                <div style="display:flex; align-items:center; gap:16px;">
-                    <!-- Gmail -->
-                    <div class="provider-item" style="position:relative; cursor:pointer;">
-                        <div style="width:48px; height:48px; background:rgba(31,41,55,0.5); border-radius:12px; display:flex; align-items:center; justify-content:center; border:1px solid #374151;">
-                            <svg width="28" height="28" viewBox="0 0 24 24">
+            <div class="flex items-center justify-center gap-6 sm:gap-8 mb-10">
+                <p class="text-sm text-gray-500 hidden sm:block">Works with:</p>
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <!-- Gmail (Active) -->
+                    <div class="provider-item relative group cursor-pointer">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-800/50 rounded-xl flex items-center justify-center border border-gray-700 transition-all" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;">
+                            <svg class="w-7 h-7 sm:w-8 sm:h-8" width="28" height="28" style="width:28px;height:28px;" viewBox="0 0 24 24">
                                 <path fill="#EA4335" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
                             </svg>
                         </div>
-                        <span class="provider-tooltip" style="position:absolute; bottom:-32px; left:50%; transform:translateX(-50%); padding:2px 8px; background:#1f2937; font-size:11px; color:#d1d5db; border-radius:4px; white-space:nowrap;">Gmail</span>
+                        <span class="provider-tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-xs text-gray-300 rounded whitespace-nowrap">Gmail</span>
                     </div>
-                    <!-- Yahoo -->
-                    <div class="provider-item" style="position:relative; cursor:pointer;">
-                        <div style="width:48px; height:48px; background:rgba(31,41,55,0.5); border-radius:12px; display:flex; align-items:center; justify-content:center; border:1px solid #374151;">
-                            <svg width="28" height="28" viewBox="0 0 24 24">
+
+                    <!-- Yahoo (Active) -->
+                    <div class="provider-item relative group cursor-pointer">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-800/50 rounded-xl flex items-center justify-center border border-gray-700 transition-all" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;">
+                            <svg class="w-7 h-7 sm:w-8 sm:h-8" width="28" height="28" style="width:28px;height:28px;" viewBox="0 0 24 24">
                                 <path fill="#6001D2" d="M23.614 8.006c-.057-.063-.136-.1-.219-.1h-4.227a.29.29 0 0 0-.257.154l-3.251 6.156-3.27-6.156a.288.288 0 0 0-.256-.154H7.907c-.083 0-.162.037-.22.1a.292.292 0 0 0-.064.234l.925 4.138-3.565 6.74a.29.29 0 0 0 .256.426h4.227c.107 0 .206-.059.257-.154l8.891-16.894a.29.29 0 0 0-.256-.426h-4.227a.289.289 0 0 0-.257.154L9.74 5.63l1.81 3.414 3.24 6.12 3.565-6.74a.288.288 0 0 0-.256-.426h-2.112l1.82-3.432a.29.29 0 0 0-.064-.234zM5.645 19.56a.29.29 0 0 1-.29-.29v-4.58a.29.29 0 0 1 .29-.29h2.71a.29.29 0 0 1 .29.29v4.58a.29.29 0 0 1-.29.29h-2.71z"/>
                             </svg>
                         </div>
-                        <span class="provider-tooltip" style="position:absolute; bottom:-32px; left:50%; transform:translateX(-50%); padding:2px 8px; background:#1f2937; font-size:11px; color:#d1d5db; border-radius:4px; white-space:nowrap;">Yahoo Mail</span>
+                        <span class="provider-tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-xs text-gray-300 rounded whitespace-nowrap">Yahoo Mail</span>
                     </div>
-                    <!-- Outlook (Coming Soon) -->
-                    <div class="provider-item" style="position:relative; cursor:pointer; opacity:0.5;">
-                        <div style="width:48px; height:48px; background:rgba(31,41,55,0.5); border-radius:12px; display:flex; align-items:center; justify-content:center; border:1px solid #374151;">
-                            <svg width="28" height="28" viewBox="0 0 24 24">
-                                <path fill="#888" d="M24 7.387v10.478c0 .23-.08.424-.238.576-.158.154-.352.23-.58.23h-8.547v-6.959l1.6 1.229c.102.086.217.127.344.127.128 0 .242-.041.344-.127l6.848-5.063V7.387zm-9.365-2.715h8.547c.23 0 .424.08.58.23.158.154.238.35.238.577v.232l-7.617 5.63-1.748-1.342V4.672zm-1.27 0v16.656H7.387V8.654l5.978 4.576V4.672zM6.388 4.672v.596L0 8.854v9.174c0 .23.078.424.232.574.154.15.35.226.586.226h5.57V4.672z"/>
+
+                    <!-- Outlook (Coming Soon - Grayscale) -->
+                    <div class="provider-item relative group cursor-pointer">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-800/50 rounded-xl flex items-center justify-center border border-gray-700/50 transition-all opacity-60" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;">
+                            <svg class="w-7 h-7 sm:w-8 sm:h-8" width="28" height="28" style="width:28px;height:28px;filter:grayscale(1);" viewBox="0 0 24 24">
+                                <path fill="#888" d="M24 7.387v10.478c0 .23-.08.424-.238.576-.158.154-.352.23-.58.23h-8.547v-6.959l1.6 1.229c.102.086.217.127.344.127.128 0 .242-.041.344-.127l6.848-5.063c.08-.063.142-.142.182-.238.04-.096.053-.19.047-.283v-.002zm-9.365-2.715h8.547c.23 0 .424.08.58.23.158.154.238.35.238.577v.232l-7.617 5.63-1.748-1.342V4.672zm-1.27 0v16.656H7.387V8.654l5.978 4.576V4.672zM6.388 4.672v.596L0 8.854v9.174c0 .23.078.424.232.574.154.15.35.226.586.226h5.57V4.672z"/>
+                                <ellipse fill="#888" cx="6.5" cy="11" rx="2.2" ry="2.5"/>
                             </svg>
                         </div>
-                        <span class="provider-tooltip" style="position:absolute; bottom:-32px; left:50%; transform:translateX(-50%); padding:2px 8px; background:#1f2937; font-size:11px; color:#d1d5db; border-radius:4px; white-space:nowrap;">Coming Soon</span>
+                        <span class="provider-tooltip absolute -bottom-8 left-1/2 -translate-x-1/2 px-3 py-1 bg-primary-600/20 border border-primary-500/30 text-xs text-primary-300 rounded whitespace-nowrap">Coming Soon</span>
                     </div>
                 </div>
             </div>
@@ -324,15 +329,15 @@
             {% endwith %}
 
             <!-- Sovereign Entry - Provider Choice Section -->
-            <div style="max-width:400px; margin:0 auto;">
-                <p style="color:#9ca3af; font-size:14px; margin-bottom:20px;">Choose your email provider to get started</p>
+            <div class="max-w-md mx-auto">
+                <p class="text-gray-400 text-sm mb-6">Choose your email provider to get started</p>
 
-                <div style="display:flex; flex-direction:column; gap:12px;">
+                <div class="flex flex-col gap-4">
                     <!-- Continue with Google -->
-                    <a href="{{ url_for('login') }}" class="sovereign-btn sovereign-btn-google"
-                       style="display:flex; align-items:center; justify-content:center; gap:12px; padding:13px 20px; text-decoration:none; font-size:15px; font-weight:600; color:white; background:#EA4335; border-radius:12px;"
-                       onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='none'">
-                        <svg width="22" height="22" style="width:22px; height:22px; flex-shrink:0;" viewBox="0 0 24 24">
+                    <a href="{{ url_for('login') }}"
+                       class="sovereign-btn sovereign-btn-google py-4 text-lg">
+                        <!-- Google "G" Icon -->
+                        <svg class="w-6 h-6 mr-3 flex-shrink-0" width="24" height="24" style="width:24px;height:24px;flex-shrink:0;" viewBox="0 0 24 24">
                             <path fill="white" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                             <path fill="white" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                             <path fill="white" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -342,20 +347,20 @@
                     </a>
 
                     <!-- Continue with Yahoo -->
-                    <a href="/login/yahoo" class="sovereign-btn sovereign-btn-yahoo"
-                       style="display:flex; align-items:center; justify-content:center; gap:12px; padding:13px 20px; text-decoration:none; font-size:15px; font-weight:600; color:white; background:#6001D2; border-radius:12px;"
-                       onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='none'">
-                        <svg width="22" height="22" style="width:22px; height:22px; flex-shrink:0;" viewBox="0 0 24 24">
-                            <path fill="white" d="M14.5 3L10 11.5 5.5 3H1l7 13v5h4v-5l7-13h-4.5z"/>
+                    <a href="/login/yahoo"
+                       class="sovereign-btn sovereign-btn-yahoo py-4 text-lg">
+                        <!-- Yahoo "Y!" Icon -->
+                        <svg class="w-6 h-6 mr-3 flex-shrink-0" width="24" height="24" style="width:24px;height:24px;flex-shrink:0;" viewBox="0 0 24 24">
+                            <path fill="white" d="M14.5 3L10 11.5 5.5 3H1l7 13v5h4v-5l7-13h-4.5zm-4.5 11l-5 7h3l3-4.5 3 4.5h3l-5-7h-2z"/>
                         </svg>
                         <span>Continue with Yahoo</span>
                     </a>
 
                     <!-- Continue with Microsoft -->
-                    <a href="/login/microsoft" class="sovereign-btn sovereign-btn-microsoft"
-                       style="display:flex; align-items:center; justify-content:center; gap:12px; padding:13px 20px; text-decoration:none; font-size:15px; font-weight:600; color:white; background:#0078D4; border-radius:12px;"
-                       onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='none'">
-                        <svg width="22" height="22" style="width:22px; height:22px; flex-shrink:0;" viewBox="0 0 24 24">
+                    <a href="/login/microsoft"
+                       class="sovereign-btn sovereign-btn-microsoft py-4 text-lg">
+                        <!-- Microsoft Windows Icon -->
+                        <svg class="w-6 h-6 mr-3 flex-shrink-0" width="24" height="24" style="width:24px;height:24px;flex-shrink:0;" viewBox="0 0 24 24">
                             <path fill="white" d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
                         </svg>
                         <span>Continue with Microsoft</span>
@@ -363,85 +368,85 @@
                 </div>
 
                 <!-- Watch Demo Button -->
-                <div style="margin-top:20px; text-align:center;">
+                <div class="mt-6 flex justify-center">
                     <button onclick="openVideoModal()"
-                            style="display:inline-flex; align-items:center; gap:8px; padding:10px 20px; background:transparent; border:1px solid #374151; color:#9ca3af; font-size:14px; border-radius:12px; cursor:pointer;"
-                            onmouseover="this.style.borderColor='var(--neon-green)'; this.style.color='#f0f0f5';"
-                            onmouseout="this.style.borderColor='#374151'; this.style.color='#9ca3af';">
-                        <span class="play-button-pulse" style="position:relative; width:28px; height:28px; background:rgba(139,92,246,0.2); border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#a78bfa; flex-shrink:0;">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            class="inline-flex items-center px-5 py-3 bg-transparent border border-gray-700 hover:border-primary-500 text-gray-400 hover:text-white text-sm font-medium rounded-xl transition-all duration-200 group">
+                        <span class="relative w-8 h-8 mr-2 bg-primary-600/20 rounded-full flex items-center justify-center text-primary-400 play-button-pulse" style="width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <svg class="w-4 h-4" width="16" height="16" style="width:16px;height:16px;" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
                         </span>
                         Watch Demo
                     </button>
                 </div>
             </div>
 
-            <p style="margin-top:20px; font-size:13px; color:#6b7280;">
+            <p class="mt-6 text-sm text-gray-500">
                 Free tier includes 100 deletions/month. No credit card required.
             </p>
         </div>
     </main>
 
     <!-- Features Section -->
-    <section id="features" style="border-top:1px solid var(--border); padding:40px 24px;">
-        <div style="max-width:900px; margin:0 auto;">
-            <h2 style="font-size:22px; font-weight:700; color:var(--text-primary); text-align:center; margin:0 0 28px 0;">Why MailRemover?</h2>
-            <div style="display:flex; gap:32px; flex-wrap:wrap;">
-                <div style="flex:1; min-width:200px; text-align:center;">
-                    <div style="width:48px; height:48px; margin:0 auto 12px; background:rgba(57,255,20,0.1); border-radius:12px; display:flex; align-items:center; justify-content:center;">
-                        <svg width="24" height="24" style="color:var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <section id="features" class="border-t border-gray-800 py-16 px-4">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-2xl font-bold text-white text-center mb-12">Why MailRemover?</h2>
+            <div class="grid sm:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto mb-4 bg-primary-500/10 rounded-xl flex items-center justify-center" style="width:48px;height:48px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;">
+                        <svg class="w-6 h-6 text-primary-400" width="24" height="24" style="width:24px;height:24px;color:var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                         </svg>
                     </div>
-                    <h3 style="font-size:15px; font-weight:600; color:var(--text-primary); margin:0 0 8px 0;">Lightning Fast</h3>
-                    <p style="font-size:13px; color:var(--text-secondary); margin:0;">Batch processing handles thousands of emails in seconds.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">Lightning Fast</h3>
+                    <p class="text-gray-400 text-sm">Batch processing handles thousands of emails in seconds.</p>
                 </div>
-                <div style="flex:1; min-width:200px; text-align:center;">
-                    <div style="width:48px; height:48px; margin:0 auto 12px; background:rgba(57,255,20,0.1); border-radius:12px; display:flex; align-items:center; justify-content:center;">
-                        <svg width="24" height="24" style="color:var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto mb-4 bg-primary-500/10 rounded-xl flex items-center justify-center" style="width:48px;height:48px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;">
+                        <svg class="w-6 h-6 text-primary-400" width="24" height="24" style="width:24px;height:24px;color:var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                         </svg>
                     </div>
-                    <h3 style="font-size:15px; font-weight:600; color:var(--text-primary); margin:0 0 8px 0;">Privacy First</h3>
-                    <p style="font-size:13px; color:var(--text-secondary); margin:0;">No data stored. Everything runs in your session.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">Privacy First</h3>
+                    <p class="text-gray-400 text-sm">No data stored. Everything runs in your session.</p>
                 </div>
-                <div style="flex:1; min-width:200px; text-align:center;">
-                    <div style="width:48px; height:48px; margin:0 auto 12px; background:rgba(57,255,20,0.1); border-radius:12px; display:flex; align-items:center; justify-content:center;">
-                        <svg width="24" height="24" style="color:var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto mb-4 bg-primary-500/10 rounded-xl flex items-center justify-center" style="width:48px;height:48px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;">
+                        <svg class="w-6 h-6 text-primary-400" width="24" height="24" style="width:24px;height:24px;color:var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                         </svg>
                     </div>
-                    <h3 style="font-size:15px; font-weight:600; color:var(--text-primary); margin:0 0 8px 0;">You're In Control</h3>
-                    <p style="font-size:13px; color:var(--text-secondary); margin:0;">Review every email before deletion. Nothing happens automatically.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">You're In Control</h3>
+                    <p class="text-gray-400 text-sm">Review every email before deletion. Nothing happens automatically.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- How It Works -->
-    <section id="how-it-works" style="border-top:1px solid var(--border); padding:40px 24px;">
-        <div style="max-width:700px; margin:0 auto;">
-            <h2 style="font-size:22px; font-weight:700; color:var(--text-primary); text-align:center; margin:0 0 28px 0;">How It Works</h2>
-            <div style="display:flex; flex-direction:column; gap:20px;">
-                <div style="display:flex; align-items:flex-start; gap:16px;">
-                    <div style="width:32px; height:32px; background:var(--neon-green); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#000; font-weight:700; font-size:14px;">1</div>
+    <section id="how-it-works" class="border-t border-gray-800 py-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold text-white text-center mb-12">How It Works</h2>
+            <div class="space-y-6">
+                <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold" style="width:32px;height:32px;min-width:32px;display:flex;align-items:center;justify-content:center;background:var(--neon-green);color:#000;border-radius:50%;">1</div>
                     <div>
-                        <h3 style="font-size:15px; font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">Connect Your Email</h3>
-                        <p style="font-size:13px; color:var(--text-secondary); margin:0;">Securely link your email account with industry-standard authentication.</p>
+                        <h3 class="text-white font-semibold">Connect Your Email</h3>
+                        <p class="text-gray-400 text-sm">Securely link your email account with industry-standard authentication.</p>
                     </div>
                 </div>
-                <div style="display:flex; align-items:flex-start; gap:16px;">
-                    <div style="width:32px; height:32px; background:var(--neon-green); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#000; font-weight:700; font-size:14px;">2</div>
+                <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold" style="width:32px;height:32px;min-width:32px;display:flex;align-items:center;justify-content:center;background:var(--neon-green);color:#000;border-radius:50%;">2</div>
                     <div>
-                        <h3 style="font-size:15px; font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">Search Your Inbox</h3>
-                        <p style="font-size:13px; color:var(--text-secondary); margin:0;">Use powerful filters to find old emails, newsletters, promotions, and more.</p>
+                        <h3 class="text-white font-semibold">Search Your Inbox</h3>
+                        <p class="text-gray-400 text-sm">Use powerful filters to find old emails, newsletters, promotions, and more.</p>
                     </div>
                 </div>
-                <div style="display:flex; align-items:flex-start; gap:16px;">
-                    <div style="width:32px; height:32px; background:var(--neon-green); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#000; font-weight:700; font-size:14px;">3</div>
+                <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold" style="width:32px;height:32px;min-width:32px;display:flex;align-items:center;justify-content:center;background:var(--neon-green);color:#000;border-radius:50%;">3</div>
                     <div>
-                        <h3 style="font-size:15px; font-weight:600; color:var(--text-primary); margin:0 0 4px 0;">Review &amp; Clean</h3>
-                        <p style="font-size:13px; color:var(--text-secondary); margin:0;">Select senders you want to remove and move their emails to trash.</p>
+                        <h3 class="text-white font-semibold">Review & Clean</h3>
+                        <p class="text-gray-400 text-sm">Select senders you want to remove and move their emails to trash.</p>
                     </div>
                 </div>
             </div>
@@ -449,7 +454,7 @@
     </section>
 
     <!-- Homemail Teaser Section -->
-    <section class="border-t border-gray-800 py-6 px-4 overflow-hidden">
+    <section class="border-t border-gray-800 py-16 px-4 overflow-hidden">
         <div class="max-w-3xl mx-auto">
             <div class="homemail-card relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 sm:p-10 border border-primary-500/30 overflow-hidden">
                 <!-- Firework/Sparkle Effects -->
@@ -517,7 +522,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800 py-5 px-4">
+    <footer class="border-t border-gray-800 py-8 px-4">
         <div class="max-w-7xl mx-auto text-center text-gray-500 text-sm">
             <p>&copy; 2026 MailRemover. All rights reserved.</p>
             <div class="mt-3 space-x-4">
@@ -586,7 +591,12 @@
                         versionEl.textContent = `v${data.version}`;
                     }
 
-                    // What's New modal disabled on landing page
+                    // Check if user has seen this version's What's New
+                    const seenVersion = localStorage.getItem('mailremover_seen_version');
+                    if (seenVersion !== data.version && data.version) {
+                        // Show What's New modal
+                        // What's New modal disabled on landing page
+                    }
                 }
             } catch (e) { }
         })();
