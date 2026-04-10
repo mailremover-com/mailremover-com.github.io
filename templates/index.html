@@ -9,35 +9,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace']
-                    },
-                    colors: {
-                        /* StreamHub Sovereign Theme */
-                        primary: {
-                            50: '#e6fff0',
-                            100: '#ccffe0',
-                            200: '#99ffc1',
-                            300: '#66ffa2',
-                            400: '#39FF14',
-                            500: '#32E012',
-                            600: '#2BC710',
-                            700: '#24AE0E',
-                            800: '#1D950C',
-                            900: '#167C0A',
-                        },
-                        dark: { 800: '#1A1A24', 850: '#12121A', 900: '#0A0A0F', 950: '#050508' }
-                    }
-                }
-            }
+    <style type="text/tailwindcss">
+        @theme {
+            --color-primary-50:  #e6fff0;
+            --color-primary-100: #ccffe0;
+            --color-primary-200: #99ffc1;
+            --color-primary-300: #66ffa2;
+            --color-primary-400: #39FF14;
+            --color-primary-500: #32E012;
+            --color-primary-600: #2BC710;
+            --color-primary-700: #24AE0E;
+            --color-primary-800: #1D950C;
+            --color-primary-900: #167C0A;
+            --font-sans: Inter, system-ui, -apple-system, sans-serif;
+            --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
         }
-    </script>
+    </style>
     <style>
         /* StreamHub Sovereign Theme Variables */
         :root {
