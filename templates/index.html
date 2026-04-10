@@ -228,10 +228,10 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans" style="background: var(--void);">
+<body class="font-sans" style="background: var(--void);">
     <!-- Header - StreamHub Style -->
     <header style="border-bottom: 1px solid var(--border);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4" style="max-width:1200px; margin:0 auto; padding:12px 24px;">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--neon-glow-strong);border:1px solid var(--neon-green);">
@@ -253,8 +253,8 @@
     </header>
 
     <!-- Hero Section -->
-    <main class="flex-1 flex items-center justify-center px-4 py-16">
-        <div class="max-w-4xl mx-auto text-center">
+    <main class="px-4 py-10" style="padding: 40px 16px;">
+        <div class="max-w-4xl mx-auto text-center" style="max-width:860px; margin:0 auto; text-align:center;">
             <!-- Floating Icon - StreamHub Style -->
             <div class="float-animation mb-8">
                 <div class="w-24 h-24 mx-auto rounded-3xl flex items-center justify-center pulse-neon" style="width:64px;height:64px;margin:0 auto;border-radius:20px;display:flex;align-items:center;justify-content:center;background:var(--neon-glow);border:1px solid var(--neon-green);">
@@ -265,14 +265,14 @@
             </div>
 
             <!-- Headline - StreamHub Style -->
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6" style="color: var(--text-primary);">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6" style="font-size:36px; font-weight:700; margin-bottom:16px; color: var(--text-primary);">
                 Clean Your Email
                 <span class="text-transparent bg-clip-text" style="background: linear-gradient(135deg, var(--neon-green) 0%, #5FFF42 100%); -webkit-background-clip: text;">
                     In Minutes
                 </span>
             </h1>
 
-            <p class="text-lg sm:text-xl mb-8 max-w-2xl mx-auto" style="color: var(--text-secondary);">
+            <p class="text-lg sm:text-xl mb-8 max-w-2xl mx-auto" style="font-size:16px; max-width:580px; margin:0 auto 24px; color: var(--text-secondary);">
                 Remove thousands of unwanted emails across Gmail, Outlook, Yahoo, and more.
                 Take control of your digital life and reclaim your inbox.
             </p>
@@ -280,7 +280,7 @@
             <!-- Provider Strip -->
             <div class="flex items-center justify-center gap-6 sm:gap-8 mb-10">
                 <p class="text-sm text-gray-500 hidden sm:block">Works with:</p>
-                <div class="flex items-center gap-4 sm:gap-6">
+                <div class="flex items-center gap-4 sm:gap-6" style="display:flex; align-items:center; gap:16px;">
                     <!-- Gmail (Active) -->
                     <div class="provider-item relative group cursor-pointer">
                         <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gray-800/50 rounded-xl flex items-center justify-center border border-gray-700 transition-all" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;">
@@ -329,10 +329,10 @@
             {% endwith %}
 
             <!-- Sovereign Entry - Provider Choice Section -->
-            <div class="max-w-md mx-auto">
+            <div class="max-w-md mx-auto" style="max-width:420px; margin:0 auto;">
                 <p class="text-gray-400 text-sm mb-6">Choose your email provider to get started</p>
 
-                <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-4" style="display:flex; flex-direction:column; gap:12px;">
                     <!-- Continue with Google -->
                     <a href="{{ url_for('login') }}"
                        class="sovereign-btn sovereign-btn-google py-4 text-lg">
@@ -389,9 +389,9 @@
 
     <!-- Features Section -->
     <section id="features" class="border-t border-gray-800 py-16 px-4">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-5xl mx-auto" style="max-width:960px; margin:0 auto;">
             <h2 class="text-2xl font-bold text-white text-center mb-12">Why MailRemover?</h2>
-            <div class="grid sm:grid-cols-3 gap-8">
+            <div class="grid sm:grid-cols-3 gap-8" style="display:flex; flex-wrap:wrap; gap:24px;">
                 <div class="text-center">
                     <div class="w-12 h-12 mx-auto mb-4 bg-primary-500/10 rounded-xl flex items-center justify-center" style="width:48px;height:48px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;">
                         <svg class="w-6 h-6 text-primary-400" width="24" height="24" style="width:24px;height:24px;color:var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -425,24 +425,24 @@
 
     <!-- How It Works -->
     <section id="how-it-works" class="border-t border-gray-800 py-16 px-4">
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-3xl mx-auto" style="max-width:700px; margin:0 auto;">
             <h2 class="text-2xl font-bold text-white text-center mb-12">How It Works</h2>
             <div class="space-y-6">
-                <div class="flex items-start space-x-4">
+                <div class="flex items-start space-x-4" style="display:flex; align-items:flex-start; gap:16px;">
                     <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold" style="width:32px;height:32px;min-width:32px;display:flex;align-items:center;justify-content:center;background:var(--neon-green);color:#000;border-radius:50%;">1</div>
                     <div>
                         <h3 class="text-white font-semibold">Connect Your Email</h3>
                         <p class="text-gray-400 text-sm">Securely link your email account with industry-standard authentication.</p>
                     </div>
                 </div>
-                <div class="flex items-start space-x-4">
+                <div class="flex items-start space-x-4" style="display:flex; align-items:flex-start; gap:16px;">
                     <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold" style="width:32px;height:32px;min-width:32px;display:flex;align-items:center;justify-content:center;background:var(--neon-green);color:#000;border-radius:50%;">2</div>
                     <div>
                         <h3 class="text-white font-semibold">Search Your Inbox</h3>
                         <p class="text-gray-400 text-sm">Use powerful filters to find old emails, newsletters, promotions, and more.</p>
                     </div>
                 </div>
-                <div class="flex items-start space-x-4">
+                <div class="flex items-start space-x-4" style="display:flex; align-items:flex-start; gap:16px;">
                     <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold" style="width:32px;height:32px;min-width:32px;display:flex;align-items:center;justify-content:center;background:var(--neon-green);color:#000;border-radius:50%;">3</div>
                     <div>
                         <h3 class="text-white font-semibold">Review & Clean</h3>
@@ -455,7 +455,7 @@
 
     <!-- Homemail Teaser Section -->
     <section class="border-t border-gray-800 py-16 px-4 overflow-hidden">
-        <div class="max-w-3xl mx-auto">
+        <div class="max-w-3xl mx-auto" style="max-width:700px; margin:0 auto;">
             <div class="homemail-card relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 sm:p-10 border border-primary-500/30 overflow-hidden">
                 <!-- Firework/Sparkle Effects -->
                 <div class="firework bg-primary-400" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
