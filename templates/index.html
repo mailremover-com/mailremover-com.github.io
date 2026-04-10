@@ -254,32 +254,32 @@
     </header>
 
     <!-- Hero Section -->
-    <main class="flex-1 flex items-center justify-center px-4 py-16">
+    <main class="flex-1 flex items-center justify-center px-4 py-8">
         <div class="max-w-4xl mx-auto text-center">
             <!-- Floating Icon - StreamHub Style -->
-            <div class="float-animation mb-8">
-                <div class="w-24 h-24 mx-auto rounded-3xl flex items-center justify-center pulse-neon" style="background: var(--neon-glow); border: 1px solid var(--neon-green);">
-                    <svg class="w-12 h-12" style="color: var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="float-animation mb-4">
+                <div class="w-16 h-16 mx-auto rounded-3xl flex items-center justify-center pulse-neon" style="background: var(--neon-glow); border: 1px solid var(--neon-green);">
+                    <svg class="w-8 h-8" style="color: var(--neon-green);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                     </svg>
                 </div>
             </div>
 
             <!-- Headline - StreamHub Style -->
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6" style="color: var(--text-primary);">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4" style="color: var(--text-primary);">
                 Clean Your Email
                 <span class="text-transparent bg-clip-text" style="background: linear-gradient(135deg, var(--neon-green) 0%, #5FFF42 100%); -webkit-background-clip: text;">
                     In Minutes
                 </span>
             </h1>
 
-            <p class="text-lg sm:text-xl mb-8 max-w-2xl mx-auto" style="color: var(--text-secondary);">
+            <p class="text-base sm:text-lg mb-5 max-w-2xl mx-auto" style="color: var(--text-secondary);">
                 Remove thousands of unwanted emails across Gmail, Outlook, Yahoo, and more.
                 Take control of your digital life and reclaim your inbox.
             </p>
 
             <!-- Provider Strip -->
-            <div class="flex items-center justify-center gap-6 sm:gap-8 mb-10">
+            <div class="flex items-center justify-center gap-6 sm:gap-8 mb-6">
                 <p class="text-sm text-gray-500 hidden sm:block">Works with:</p>
                 <div class="flex items-center gap-4 sm:gap-6">
                     <!-- Gmail (Active) -->
@@ -336,7 +336,7 @@
                 <div class="flex flex-col gap-4">
                     <!-- Continue with Google -->
                     <a href="{{ url_for('login') }}"
-                       class="sovereign-btn sovereign-btn-google py-4 text-lg">
+                       class="sovereign-btn sovereign-btn-google py-3 text-base">
                         <!-- Google "G" Icon -->
                         <svg class="w-6 h-6 mr-3 flex-shrink-0" viewBox="0 0 24 24">
                             <path fill="white" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -349,7 +349,7 @@
 
                     <!-- Continue with Yahoo -->
                     <a href="/login/yahoo"
-                       class="sovereign-btn sovereign-btn-yahoo py-4 text-lg">
+                       class="sovereign-btn sovereign-btn-yahoo py-3 text-base">
                         <!-- Yahoo "Y!" Icon -->
                         <svg class="w-6 h-6 mr-3 flex-shrink-0" viewBox="0 0 24 24">
                             <path fill="white" d="M14.5 3L10 11.5 5.5 3H1l7 13v5h4v-5l7-13h-4.5zm-4.5 11l-5 7h3l3-4.5 3 4.5h3l-5-7h-2z"/>
@@ -359,7 +359,7 @@
 
                     <!-- Continue with Microsoft -->
                     <a href="/login/microsoft"
-                       class="sovereign-btn sovereign-btn-microsoft py-4 text-lg">
+                       class="sovereign-btn sovereign-btn-microsoft py-3 text-base">
                         <!-- Microsoft Windows Icon -->
                         <svg class="w-6 h-6 mr-3 flex-shrink-0" viewBox="0 0 24 24">
                             <path fill="white" d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
@@ -389,9 +389,9 @@
     </main>
 
     <!-- Features Section -->
-    <section id="features" class="border-t border-gray-800 py-16 px-4">
+    <section id="features" class="border-t border-gray-800 py-10 px-4">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-2xl font-bold text-white text-center mb-12">Why MailRemover?</h2>
+            <h2 class="text-2xl font-bold text-white text-center mb-6">Why MailRemover?</h2>
             <div class="grid sm:grid-cols-3 gap-8">
                 <div class="text-center">
                     <div class="w-12 h-12 mx-auto mb-4 bg-primary-500/10 rounded-xl flex items-center justify-center">
@@ -425,9 +425,9 @@
     </section>
 
     <!-- How It Works -->
-    <section id="how-it-works" class="border-t border-gray-800 py-16 px-4">
+    <section id="how-it-works" class="border-t border-gray-800 py-10 px-4">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-2xl font-bold text-white text-center mb-12">How It Works</h2>
+            <h2 class="text-2xl font-bold text-white text-center mb-6">How It Works</h2>
             <div class="space-y-6">
                 <div class="flex items-start space-x-4">
                     <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold">1</div>
