@@ -8,36 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace']
-                    },
-                    colors: {
-                        /* StreamHub Sovereign Theme */
-                        primary: {
-                            50: '#e6fff0',
-                            100: '#ccffe0',
-                            200: '#99ffc1',
-                            300: '#66ffa2',
-                            400: '#39FF14',
-                            500: '#32E012',
-                            600: '#2BC710',
-                            700: '#24AE0E',
-                            800: '#1D950C',
-                            900: '#167C0A',
-                        },
-                        dark: { 800: '#1A1A24', 850: '#12121A', 900: '#0A0A0F', 950: '#050508' }
-                    }
-                }
-            }
-        }
-    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-size: 16px; line-height: 1.5; }
+        a { color: inherit; }
+        svg { display: block; flex-shrink: 0; }
+    </style>
     <style>
         /* StreamHub Sovereign Theme Variables */
         :root {
@@ -242,13 +218,13 @@
                 <span style="font-size: 18px; font-weight: 700; color: var(--text-primary);">MailRemover</span>
             </div>
             <nav style="display: flex; align-items: center; gap: 24px;">
-                <a href="#features" style="color: var(--text-secondary); text-decoration: none; font-size: 14px;"
+                <a href="#features" style="color: var(--text-secondary); text-decoration: none; font-size: 14px; white-space: nowrap;"
                    onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">Features</a>
-                <a href="#how-it-works" style="color: var(--text-secondary); text-decoration: none; font-size: 14px;"
+                <a href="#how-it-works" style="color: var(--text-secondary); text-decoration: none; font-size: 14px; white-space: nowrap;"
                    onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">How It Works</a>
-                <a href="/pricing" style="color: var(--text-secondary); text-decoration: none; font-size: 14px;"
+                <a href="/pricing" style="color: var(--text-secondary); text-decoration: none; font-size: 14px; white-space: nowrap;"
                    onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">Pricing</a>
-                <a href="{{ url_for('login') }}" style="background: var(--neon-green); color: #000; text-decoration: none; font-size: 14px; font-weight: 600; padding: 8px 18px; border-radius: 8px;"
+                <a href="{{ url_for('login') }}" style="display: inline-block; background: var(--neon-green); color: #000; text-decoration: none; font-size: 14px; font-weight: 600; padding: 8px 18px; border-radius: 8px; white-space: nowrap; line-height: 1.4;"
                    onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Sign In</a>
             </nav>
         </div>
@@ -284,7 +260,7 @@
 
             <!-- Login Buttons -->
             <div style="display: flex; flex-direction: column; gap: 12px; max-width: 340px;">
-                <a href="{{ url_for('login') }}" class="sovereign-btn sovereign-btn-google" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 20px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 600;">
+                <a href="{{ url_for('login') }}" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 20px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 600; color: white; background-color: #EA4335; box-shadow: 0 4px 12px rgba(234,67,53,0.3);" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='none'">
                     <svg width="20" height="20" viewBox="0 0 24 24">
                         <path fill="white" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                         <path fill="white" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -294,14 +270,14 @@
                     <span>Continue with Google</span>
                 </a>
 
-                <a href="/login/yahoo" class="sovereign-btn sovereign-btn-yahoo" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 20px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 600;">
+                <a href="/login/yahoo" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 20px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 600; color: white; background-color: #6001D2; box-shadow: 0 4px 12px rgba(96,1,210,0.3);" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='none'">
                     <svg width="20" height="20" viewBox="0 0 24 24">
                         <path fill="white" d="M14.5 3L10 11.5 5.5 3H1l7 13v5h4v-5l7-13h-4.5z"/>
                     </svg>
                     <span>Continue with Yahoo</span>
                 </a>
 
-                <a href="/login/microsoft" class="sovereign-btn sovereign-btn-microsoft" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 20px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 600;">
+                <a href="/login/microsoft" style="display: flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 20px; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 600; color: white; background-color: #0078D4; box-shadow: 0 4px 12px rgba(0,120,212,0.3);" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='none'">
                     <svg width="20" height="20" viewBox="0 0 24 24">
                         <path fill="white" d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
                     </svg>
